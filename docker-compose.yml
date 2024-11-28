@@ -1,0 +1,14 @@
+cups-server:
+  container_name: cups-docker
+  restart: always
+  image: monkeydri/cups-docker:latest
+  ports:
+    - "631:631"
+  volumes:
+    - /var/docker/cups-docker/cupsd.conf:/etc/cups/cupsd.conf
+  environment:
+    - CUPS_USER_ADMIN=admin
+    - CUPS_USER_PASSWORD=secr3t
+    - PRINTER_MODEL=HL-L2300D
+  devices:
+    - "${PRINTER_ADDRESS}"
